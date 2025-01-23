@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import "./addItem.css";
 const AddItem = () => {
   const handleAddCoffee = (e) => {
@@ -10,6 +11,7 @@ const AddItem = () => {
     const category = form.category.value;
     const details = form.details.value;
     const photo = form.photo.value;
+    const price = form.price.value;
     const cofferInfo = {
       name,
       quantity,
@@ -18,8 +20,30 @@ const AddItem = () => {
       category,
       details,
       photo,
+      price,
     };
     console.log(cofferInfo);
+    fetch("http://localhost:3000/coffees", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(cofferInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Item Added Successfully",
+            text: "Modal with a custom image.",
+
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: "Custom image",
+          });
+        }
+      });
   };
   return (
     <div>
@@ -59,11 +83,23 @@ const AddItem = () => {
         </div>{" "}
         {/* row section */}
         <div className="row-container">
-          <div style={{ width: "93%", margin: "4px" }}>
+          <div style={{ width: "46%", margin: "4px" }}>
             <label htmlFor="name">Photo</label>
             <input
               type="text"
               name="photo"
+              style={{
+                width: "97%",
+                textAlign: "center",
+                padding: "10px",
+              }}
+            />
+          </div>{" "}
+          <div style={{ width: "46%", margin: "4px" }}>
+            <label htmlFor="name">price</label>
+            <input
+              type="text"
+              name="price"
               style={{
                 width: "97%",
                 textAlign: "center",
