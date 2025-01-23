@@ -1,20 +1,24 @@
 import { useLoaderData } from "react-router-dom";
-import AddItem from "../../Forms/AddItemForm/AddItem";
 import CoffeeCard from "../../Components/coffeeCard/CoffeeCard";
 import "./homePage.css";
+import { useState } from "react";
 const HomePage = () => {
-  const coffees = useLoaderData();
+  const loadedCoffees = useLoaderData();
+  const [coffees, setCoffees] = useState(loadedCoffees);
   console.log(coffees);
   return (
     <div>
       <h1>home page coming soon</h1>
       <div className="card-container">
         {coffees.map((coffee) => (
-          <CoffeeCard key={coffee._id} coffee={coffee}></CoffeeCard>
+          <CoffeeCard
+            key={coffee._id}
+            coffee={coffee}
+            coffees={coffees}
+            setCoffees={setCoffees}
+          ></CoffeeCard>
         ))}
       </div>
-
-      <AddItem></AddItem>
     </div>
   );
 };
