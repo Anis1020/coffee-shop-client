@@ -1,0 +1,7 @@
+.row-container {
+  display: flex;
+}
+input {
+  padding: 10px;
+  margin-bottom: 16px;
+}
