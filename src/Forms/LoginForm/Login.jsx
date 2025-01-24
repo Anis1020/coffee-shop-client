@@ -1,9 +1,28 @@
+import { useContext } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
+  const { userLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleLogin = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    userLogin(email, password)
+      .then((result) => {
+        console.log(result.user);
+        if (result.user) {
+          navigate(location?.state ? location.state : "/");
+        }
+      })
+      .catch((error) => {
+        console.log(error.massage);
+      });
   };
   return (
     <div className="bg-amber-200 ">
@@ -11,30 +30,16 @@ const Login = () => {
         {/* row section */}
         <div className="">
           <div>
-            <label htmlFor="name">Quantity</label>
-            <input className="border w-full" type="text" name="quantity" />
+            <label htmlFor="name">Email</label>
+            <input className="border w-full" type="text" name="email" />
           </div>
         </div>{" "}
         {/* row section */}
         <div className="">
           <div>
-            <label htmlFor="name">Test</label>
-            <input className="border w-full" type="text" name="test" />
+            <label htmlFor="name">Password</label>
+            <input className="border w-full" type="text" name="password" />
           </div>
-        </div>{" "}
-        {/* row section */}
-        <div className="">
-          <div>
-            <label htmlFor="name">Details</label>
-            <input className="border w-full" type="text" name="details" />
-          </div>
-        </div>{" "}
-        {/* row section */}
-        <div className="">
-          <div>
-            <label htmlFor="name">Photo</label>
-            <input className="border w-full" type="text" name="photo" />
-          </div>{" "}
         </div>{" "}
         {/* row section */}
         <div className="">

@@ -5,7 +5,7 @@ import { useState } from "react";
 const HomePage = () => {
   const loadedCoffees = useLoaderData();
   const [coffees, setCoffees] = useState(loadedCoffees);
-  console.log(coffees);
+
   return (
     <div>
       <h1>home page coming soon</h1>

@@ -1,12 +1,15 @@
 import { useContext } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Result } from "postcss";
+import Swal from "sweetalert2";
+import { updateProfile } from "firebase/auth";
+import auth from "../../firebaseConfig/firebaseConfig";
 
 const RegisterForm = () => {
   const { createUserByEmailPass, googleLogin } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -24,6 +27,37 @@ const RegisterForm = () => {
     createUserByEmailPass(email, password)
       .then((result) => {
         console.log(result.user);
+        if (result.user) {
+          Swal.fire({
+            title: "Registration success",
+            text: "You clicked the button!",
+            icon: "success",
+          });
+        }
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+
+        navigate("/");
+        // update user profile
+        updateProfile(result.user, {
+          displayName: name,
+          photoURL: photo,
+        })
+          .then((result) => {
+            console.log(result);
+          })
+          .catch((error) => {
+            console.log(error.massage);
+          });
       })
       .catch((error) => {
         console.log(error.massage);

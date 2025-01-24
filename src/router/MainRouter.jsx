@@ -6,6 +6,7 @@ import CoffeeUpdate from "../Pages/CoffeeUpdate/CoffeeUpdate";
 import AddItem from "../Forms/AddItemForm/AddItem";
 import Login from "../Forms/LoginForm/Login";
 import RegisterForm from "../Forms/RegisterForm/RegisterForm";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addCoffee",
-        element: <AddItem></AddItem>,
+        element: (
+          <PrivateRoute>
+            <AddItem></AddItem>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/coffeeDetail/:id",

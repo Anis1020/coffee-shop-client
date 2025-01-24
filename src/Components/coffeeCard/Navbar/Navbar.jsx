@@ -4,8 +4,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, userLogout } = useContext(AuthContext);
   console.log(user);
+  const logout = () => {
+    userLogout();
+  };
   return (
     <div className="navbar bg-red-200">
       <div>
@@ -14,7 +17,10 @@ const Navbar = () => {
         <NavLink to={"/login"}>Login</NavLink>
       </div>
       <div>
-        <p>{user?.email}</p>
+        <p>{user?.displayName}</p>
+        <span onClick={logout}>
+          <NavLink to={"/login"}>Logout</NavLink>
+        </span>
       </div>
     </div>
   );

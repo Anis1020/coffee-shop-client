@@ -52,33 +52,63 @@ const AddItem = () => {
         <div className="row-container">
           <div style={{ width: "46%", margin: "4px" }}>
             <label htmlFor="name">Name</label>
-            <input type="text" name="coffeeName" style={{ width: "96%" }} />
+            <input
+              className="border"
+              type="text"
+              name="coffeeName"
+              style={{ width: "96%" }}
+            />
           </div>
           <div style={{ width: "46%", margin: "4px" }}>
             <label htmlFor="name">Quantity</label>
-            <input type="text" name="quantity" style={{ width: "96%" }} />
+            <input
+              className="border"
+              type="text"
+              name="quantity"
+              style={{ width: "96%" }}
+            />
           </div>
         </div>{" "}
         {/* row section */}
         <div className="row-container">
           <div style={{ width: "46%", margin: "4px" }}>
             <label htmlFor="name">Supplier</label>
-            <input type="text" name="supplier" style={{ width: "96%" }} />
+            <input
+              className="border"
+              type="text"
+              name="supplier"
+              style={{ width: "96%" }}
+            />
           </div>
           <div style={{ width: "46%", margin: "4px" }}>
             <label htmlFor="name">Test</label>
-            <input type="text" name="test" style={{ width: "96%" }} />
+            <input
+              className="border"
+              type="text"
+              name="test"
+              style={{ width: "96%" }}
+            />
           </div>
         </div>{" "}
         {/* row section */}
         <div className="row-container">
           <div style={{ width: "46%", margin: "4px" }}>
             <label htmlFor="name">Category</label>
-            <input type="text" name="category" style={{ width: "96%" }} />
+            <input
+              className="border"
+              type="text"
+              name="category"
+              style={{ width: "96%" }}
+            />
           </div>
           <div style={{ width: "46%", margin: "4px" }}>
             <label htmlFor="name">Details</label>
-            <input type="text" name="details" style={{ width: "96%" }} />
+            <input
+              className="border"
+              type="text"
+              name="details"
+              style={{ width: "96%" }}
+            />
           </div>
         </div>{" "}
         {/* row section */}
@@ -86,6 +116,7 @@ const AddItem = () => {
           <div style={{ width: "46%", margin: "4px" }}>
             <label htmlFor="name">Photo</label>
             <input
+              className="border"
               type="text"
               name="photo"
               style={{
@@ -98,6 +129,7 @@ const AddItem = () => {
           <div style={{ width: "46%", margin: "4px" }}>
             <label htmlFor="name">price</label>
             <input
+              className="border"
               type="text"
               name="price"
               style={{
