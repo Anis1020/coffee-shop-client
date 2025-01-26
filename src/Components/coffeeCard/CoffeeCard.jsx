@@ -35,6 +35,9 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
       }
     });
   };
+  const handleOrder = (id) => {
+    console.log(id);
+  };
   return (
     <div style={{ border: "2px solid red", padding: "6px" }}>
       <img src={photo} style={{ width: "100%", height: "150px" }} />
@@ -42,6 +45,11 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
       <h3>Coffee price: {price ? price : "500"}tk</h3>
       <p>{quality}</p>
       <p>{category}</p>
+      <button onClick={() => handleOrder(_id)}>
+        {" "}
+        <Link>Order Now</Link>
+      </button>{" "}
+      <br />
       <Link to={`/coffeeDetail/${_id}`}>
         <button>See Details</button>
       </Link>

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import axios from "axios";
 
 const Login = () => {
   const { userLogin } = useContext(AuthContext);
@@ -16,9 +17,15 @@ const Login = () => {
     userLogin(email, password)
       .then((result) => {
         console.log(result.user);
-        if (result.user) {
-          navigate(location?.state ? location.state : "/");
-        }
+        const user = { email };
+        axios
+          .post("http://localhost:3000/jwt", user, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data);
+            if (result.data.success) {
+              navigate(location?.state ? location.state : "/");
+            }
+          });
       })
       .catch((error) => {
         console.log(error.massage);

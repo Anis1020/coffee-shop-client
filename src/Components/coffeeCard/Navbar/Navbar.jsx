@@ -5,20 +5,21 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
   const logout = () => {
     userLogout();
   };
   return (
-    <div className="navbar bg-red-200">
-      <div>
+    <div className="navbar bg-red-300 p-5">
+      <div className="space-x-7">
         <NavLink to={"/"}>Home</NavLink>
         <NavLink to={"/addCoffee"}>Add Coffee</NavLink>
         <NavLink to={"/login"}>Login</NavLink>
+        <NavLink to={"/allUsers"}>User</NavLink>
       </div>
-      <div>
-        <p>{user?.displayName}</p>
-        <span onClick={logout}>
+      <div className="flex gap-3">
+        <p className="bg-pink-400">{user?.displayName}</p>
+        <span className="bg-red-500" onClick={logout}>
           <NavLink to={"/login"}>Logout</NavLink>
         </span>
       </div>

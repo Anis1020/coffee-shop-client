@@ -7,6 +7,7 @@ import AddItem from "../Forms/AddItemForm/AddItem";
 import Login from "../Forms/LoginForm/Login";
 import RegisterForm from "../Forms/RegisterForm/RegisterForm";
 import PrivateRoute from "./PrivateRoute";
+import AllUsers from "../Pages/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,11 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <RegisterForm></RegisterForm>,
+      },
+      {
+        path: "/allUsers",
+        element: <AllUsers></AllUsers>,
+        loader: () => fetch("http://localhost:3000/users"),
       },
     ],
   },
